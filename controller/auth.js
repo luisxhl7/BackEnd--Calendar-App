@@ -8,7 +8,6 @@ const createUser = async( req, res = response ) => {
         const { email, password } = req.body
         
         let user = await User.findOne({email: email})
-
         if ( user ) {
             return res.status(400).json({
                 ok: false,
@@ -48,7 +47,6 @@ const loginUser = async( req, res = response ) => {
         const { email, password} = req.body
     
         const user = await User.findOne({email: email})
-        
         if (!user) {
             return res.status(400).json({
                 ok: false,
@@ -93,6 +91,8 @@ const RenewToken = async( req, res = response ) => {
     res.json({
         ok: true,
         message: 'Renew',
+        uid,
+        name,
         token: token
     })
 }
